@@ -4,14 +4,9 @@ from netlib.http import Headers
 def request(flow):
 
     if flow.request.pretty_host.endswith("sojourncollege.com"):
-            mitmproxy.ctx.log( flow.request.path )
-            #method = flow.request.path.split('/')[3].split('?')[0]            
+            mitmproxy.ctx.log( flow.request.path )       
             flow.request.host = "cnn.com"
             flow.request.port = 80
-            #flow.request.scheme = 'http'
-            #flow.request.path = ''
-            #if method == 'getjson':
-                #flow.request.path=flow.request.path.replace(method,"getxml")
             flow.request.headers["Host"] = "cnn.com"
             flow.response.status_code = 301
             flow.response.headers.append("Location")
